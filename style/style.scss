@@ -1,14 +1,83 @@
-*{
+* {
     font-family: "Montserrat", sans-serif;
     color: #fff;
 }
 
-.weather{
+
+body{
+    background-color: #ac44ed;
+}
+
+.weather {
     background-image: url('../img/background.png');
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
     flex-direction: column;
 
-    
+    padding: 30px 20px 76px;
+
+    width: 640px;
+    margin-top: 10%;
+    margin-left: 40%;
+
+    &__date {
+        font-weight: 500;
+        font-size: 18px;
+        align-items: center;
+    }
+
+    &__location {
+        display: flex;
+        flex-direction: row;
+        width: 100px;
+        height: 21px;
+        padding-bottom: 180px;
+        align-items: center;
+        column-gap: 5px;
+    }
+
+    &__main {
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    &__title {
+        padding: 0px 0px 1px;
+        width: 289px;
+        height: 44px;
+        margin: 0;
+    }
+
+    &__description {
+        padding: 0px 0px 1px;
+        width: 116px;
+        height: 24px;
+        margin: 0;
+    }
+
+    &__parameters {
+        padding: 10px 0px 25px;
+        width: 310px;
+        height: 53px;
+        display: flex;
+        flex-direction: row;
+        column-gap: 20px;
+        flex-wrap: wrap;
+        
+    }
+
+    &__parameter {
+        font-weight: 700;
+        font-size: 15px;
+        list-style-type: none; 
+
+        &-value {
+            padding-left: 20px;
+            font-weight: 500;
+            font-size: 15px;
+        }
+    }
+
 }

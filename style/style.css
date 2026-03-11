@@ -3,10 +3,69 @@
   color: #fff;
 }
 
+body {
+  background-color: #ac44ed;
+}
+
 .weather {
   background-image: url("../img/background.png");
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
   flex-direction: column;
+  padding: 30px 20px 76px;
+  width: 640px;
+  margin-top: 10%;
+  margin-left: 40%;
+}
+.weather__date {
+  font-weight: 500;
+  font-size: 18px;
+  align-items: center;
+}
+.weather__location {
+  display: flex;
+  flex-direction: row;
+  width: 100px;
+  height: 21px;
+  padding-bottom: 180px;
+  align-items: center;
+  -moz-column-gap: 5px;
+       column-gap: 5px;
+}
+.weather__main {
+  display: flex;
+  flex-direction: column;
+}
+.weather__title {
+  padding: 0px 0px 1px;
+  width: 289px;
+  height: 44px;
+  margin: 0;
+}
+.weather__description {
+  padding: 0px 0px 1px;
+  width: 116px;
+  height: 24px;
+  margin: 0;
+}
+.weather__parameters {
+  padding: 10px 0px 25px;
+  width: 310px;
+  height: 53px;
+  display: flex;
+  flex-direction: row;
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+  flex-wrap: wrap;
+}
+.weather__parameter {
+  font-weight: 700;
+  font-size: 15px;
+  list-style-type: none;
+}
+.weather__parameter-value {
+  padding-left: 20px;
+  font-weight: 500;
+  font-size: 15px;
 }/*# sourceMappingURL=style.css.map */

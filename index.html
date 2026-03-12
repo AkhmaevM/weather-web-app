@@ -1,42 +1,58 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>weather-web-app</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-            rel="stylesheet">
-        <link rel="stylesheet" href="/style/style.css">
-    </head>
-    <body>
-        <section class="weather">
-            <div class="weather__top">
-                <p class="weather__date">Date</p>
-                <p class="weather__location">
-                    <img src="./img/location.svg" alt="location-icon">
-                    Location
-                </p>
-            </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>weather-web-app</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/style/style.css" />
+  </head>
+  <body>
+    <section class="weather">
+      <div class="weather__top">
+        <p class="weather__date">Date</p>
+        <p class="weather__location">
+          <img
+            src="./img/location.svg"
+            alt="location-icon"
+            class="weather__icon"
+          />
+          Location
+        </p>
+      </div>
 
-            <div class="weather__main">
-                <h1 class="weather__title">Highest/Lowest</h1>
-                <p class="weather__description">Description</p>
+      <div class="weather__main">
+        <h1 class="weather__title">Highest/Lowest</h1>
+        <p class="weather__description">Description</p>
 
-                <ul class="weather__parameters">
-                    <li class="weather__parameter">Feels Like <span
-                            class="weather__parameter-value">value</span></li>
-                    <li class="weather__parameter">Pressure <span
-                            class="weather__parameter-value">value</span></li>
-                    <li class="weather__parameter">Humidity <span
-                            class="weather__parameter-value">value</span></li>
-                    <li class="weather__parameter">WIND <span
-                            class="weather__parameter-value">value</span></li>
-                </ul>
-            </div>
-        </section>
-        <script src="scripts/script.js"></script>
-    </body>
+        <ul class="weather__parameters">
+          <li class="weather__parameter">
+            Feels Like <span class="weather__parameter-value feels">value</span>
+          </li>
+          <li class="weather__parameter pressure">
+            Pressure
+            <span class="weather__parameter-value pressure">value</span>
+          </li>
+          <li class="weather__parameter">
+            Humidity
+            <span class="weather__parameter-value humidity">value</span>
+          </li>
+          <li class="weather__parameter">
+            Wind <span class="weather__parameter-value wind">value</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <script
+      src="https://api-maps.yandex.ru/2.1/?apikey=d8fcc660-518f-4f26-a7be-055fcbe9b86f&lang=ru_RU"
+      type="text/javascript"
+    ></script>
+    <script src="scripts/script.js"></script>
+  </body>
 </html>

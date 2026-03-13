@@ -13,48 +13,69 @@ let coordinates;
 date.textContent = new Date().toDateString();
 
 locationIcon.onclick = () => {
-  // navigator.geolocation.getCurrentPosition(
-  //   (pos) => console.log(pos),
-  //   (error) => console.log(error),
-  // );
 
+locationIcon.onclick = () => {
 
-    // fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${pos.latitude}lon=${pos.longtitude}`)
-    // .then(response => response.json())
-    // .then(data => {
-    //     console.log(data.address.city || data.address.town);
-    // })
+  navigator.geolocation.getCurrentPosition(
+    async (position) => {
 
-    // 1. Запрашиваем координаты
-navigator.geolocation.getCurrentPosition(
-  async (position) => {
-    const { latitude, longitude } = position.coords;
-    console.log(`Координаты: ${latitude}, ${longitude}`);
+      const { latitude, longitude } = position.coords;
+      console.log(`Координаты: ${latitude}, ${longitude}`);
 
-    // 2. Делаем запрос к API для получения города (Reverse Geocoding)
-    try {
-      const response = await fetch(
-        `https://nominatim.openstreetmap.org/lat=${latitude}&lon=${longitude}`
-        // `https://nominatim.openstreetmap.org/ui/reverse.html?lat=${latitude}&lon=${longitude}&zoom=12`
-      );
-      const data = await response.json();
-      
-      // Извлекаем город (учитываем разные типы населенных пунктов)
-      const city = data.address.city || data.address.town || data.address.village || data.address.hamlet;
-      
-      console.log(`Ваш город: ${city}`);
-    } catch (error) {
-      console.error("Ошибка при получении адреса:", error);
+      try {
+
+        // reverse geocoding
+        const geoResponse = await fetch(
+          `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
+        );
+
+        const geoData = await geoResponse.json();
+
+        const city =
+          geoData.address.city ||
+          geoData.address.town ||
+          geoData.address.village ||
+          geoData.address.hamlet;
+
+        currentLocation.textContent = city;
+
+        console.log("Ваш город:", city);
+
+        // ---------------------------
+        // ЗАПРОС ПОГОДЫ
+        // ---------------------------
+
+        const apiKey = "435dd041dc3ab094df36ea81241930ad";
+
+        const weatherResponse = await fetch(
+          `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
+        );
+
+        const weatherData = await weatherResponse.json();
+
+        console.log("Weather:", weatherData);
+        
+        weatherTitle.textContent = `${weatherData.main.temp_max.toFixed()} ℃ / ${weatherData.main.temp_min.toFixed()} ℃gi `;
+        feels.textContent = `${weatherData.main.feels_like} ℃`;
+        humidity.textContent = `${weatherData.main.humidity} %`;
+        pressure.textContent = `${weatherData.main.pressure} мм рт. ст.`;
+        wind.textContent = `${weatherData.wind.speed} м/с`;
+        
+        weatherDescription.textContent = weatherData.weather[0].description;
+
+      } catch (error) {
+        console.error("Ошибка:", error);
+      }
+
+    },
+    (error) => {
+      console.error("Ошибка геолокации:", error.message);
+    },
+    {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
     }
-  },
-  (error) => {
-    // Обработка ошибок (запрет доступа, сбой GPS и т.д.)
-    console.error("Ошибка геолокации:", error.message);
-  },
-  {
-    enableHighAccuracy: true, // Попытаться получить максимально точные данные
-    timeout: 5000,            // Время ожидания ответа от спутника/сети
-    maximumAge: 0             // Не использовать кэшированные данные
-  }
-);
+  );
+};
 };

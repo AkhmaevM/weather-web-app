@@ -3,18 +3,20 @@ const locationIcon = document.querySelector(".weather__icon");
 const currentLocation = document.querySelector(".weather__location");
 const weatherDescription = document.querySelector(".weather__description");
 const weatherTitle = document.querySelector(".weather__title");
+const weatherParameters = document.querySelector('.weather__parameters')
 const feels = document.querySelector(".feels");
 const pressure = document.querySelector(".pressure");
 const humidity = document.querySelector(".humidity");
 const wind = document.querySelector(".wind");
-
+const userInput = document.querySelector('.weather__location-input');
+const searchCityBtn = document.querySelector('.weather__btn');
 let coordinates;
 
 date.textContent = new Date().toDateString();
 
-locationIcon.onclick = () => {
 
 locationIcon.onclick = () => {
+  weatherParameters.classList.remove('hiden');
 
   navigator.geolocation.getCurrentPosition(
     async (position) => {
@@ -54,13 +56,13 @@ locationIcon.onclick = () => {
         const weatherData = await weatherResponse.json();
 
         console.log("Weather:", weatherData);
-        
-        weatherTitle.textContent = `${weatherData.main.temp_max.toFixed()} ℃ / ${weatherData.main.temp_min.toFixed()} ℃gi `;
+
+        weatherTitle.textContent = `${weatherData.main.temp_max.toFixed()} ℃ / ${weatherData.main.temp_min.toFixed()} ℃ `;
         feels.textContent = `${weatherData.main.feels_like} ℃`;
         humidity.textContent = `${weatherData.main.humidity} %`;
         pressure.textContent = `${weatherData.main.pressure} мм рт. ст.`;
         wind.textContent = `${weatherData.wind.speed} м/с`;
-        
+
         weatherDescription.textContent = weatherData.weather[0].description;
 
       } catch (error) {
@@ -78,4 +80,7 @@ locationIcon.onclick = () => {
     }
   );
 };
-};
+
+
+
+
